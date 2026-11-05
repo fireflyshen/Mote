@@ -25,8 +25,7 @@ export default function App() {
   const [dark, setDark] = useState(
     () =>
       localStorage.getItem("mote-theme") === "dark" ||
-      (!localStorage.getItem("mote-theme") &&
-        matchMedia("(prefers-color-scheme: dark)").matches),
+      (!localStorage.getItem("mote-theme") && matchMedia("(prefers-color-scheme: dark)").matches),
   );
   useEffect(() => {
     document.documentElement.dataset.theme = dark ? "dark" : "light";
@@ -143,17 +142,14 @@ export default function App() {
                 checked={dark}
                 onChange={(e) => {
                   setDark(e.target.checked);
-                  localStorage.setItem(
-                    "mote-theme",
-                    e.target.checked ? "dark" : "light",
-                  );
+                  localStorage.setItem("mote-theme", e.target.checked ? "dark" : "light");
                 }}
               />
             </label>
             <hr />
             <h3>Raycast 快捷记录</h3>
             <p>
-              打开 Send to Mote，写下想法和标签，按 ⌘↵ 发送。当前连接选择 SSH
+              打开 Mote Notes，在悬浮记事本中写下想法，停笔后自动同步，⌘S 立即保存。当前连接选择 SSH
               (RN)，SSH Host 填 rn。
             </p>
             <label>
@@ -161,14 +157,13 @@ export default function App() {
               <input readOnly value={location.origin} />
             </label>
             <p>
-              生成速记令牌后粘贴到插件设置。令牌仅显示一次，可新增记录。重新生成会使旧令牌失效。
+              生成速记令牌后粘贴到插件设置。令牌仅显示一次，可新增记录并更新记事本创建的记录。重新生成会使旧令牌失效。
             </p>
             <button
               className="mote-primary"
               disabled={busy}
               onClick={async () => {
-                if (!confirm("生成新令牌会使之前的 Raycast 令牌失效，继续吗？"))
-                  return;
+                if (!confirm("生成新令牌会使之前的 Raycast 令牌失效，继续吗？")) return;
                 setBusy(true);
                 setError("");
                 try {

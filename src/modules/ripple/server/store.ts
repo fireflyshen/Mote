@@ -164,7 +164,7 @@ export function rippleStore(db: DatabaseSync) {
       ).map(memo);
       return { notes, total, hasMore: offset + notes.length < total };
     },
-    create(input: unknown): Memo {
+    create(input: unknown, onCreate?: (note: Memo) => void): Memo {
       const item = object(input),
         value = normalized(item.content),
         id = identifier(item.id ?? randomUUID());
@@ -196,7 +196,9 @@ export function rippleStore(db: DatabaseSync) {
           0,
           1,
         );
-        return memo(row(id));
+        const savedNote = memo(row(id));
+        onCreate?.(savedNote);
+        return savedNote;
       });
     },
     update(id: string, input: unknown): Memo {

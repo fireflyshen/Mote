@@ -6,3 +6,4 @@
 - Keep credentials, personal notes, databases, screenshots and build output out of Git.
 - Before deploying, run app and extension typecheck, lint, build and relevant tests.
 - Preserve stable submission IDs, failed drafts, version checks and scoped capture tokens.
+- The launcher opens a native floating notepad, not a Raycast submission form. Keep automatic local saves and incremental synchronization.

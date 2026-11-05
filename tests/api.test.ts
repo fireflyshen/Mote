@@ -227,3 +227,51 @@ test("login attempts are rate limited", async () => {
     db.close();
   }
 });
+
+test("floating notepad saves revisions in one memo and retries idempotently", async () => {
+  const f = await fixture();
+  try {
+    const headers = { Authorization: `Bearer ${f.token}` },
+      id = randomUUID();
+    const save = (body: unknown) => f.call("/notepad", "POST", body, headers);
+    let response = await save({ id, content: "第一行" });
+    assert.equal(response.status, 200);
+    let note = await response.json();
+    assert.equal(note.version, 1);
+    response = await save({ id, content: "第一行\n第二行 #灵感", version: note.version });
+    note = await response.json();
+    assert.equal(note.version, 2);
+    assert.equal((await save({ id, content: note.content, version: 1 })).status, 200);
+    assert.equal(f.store.summary().total, 1);
+    assert.equal((await save({ id, content: "旧版本写入", version: 1 })).status, 409);
+    assert.equal(f.store.get(id).content, note.content);
+  } finally {
+    f.db.close();
+  }
+});
+test("floating notepad cannot claim web memos or resurrect trashed notes", async () => {
+  const f = await fixture();
+  try {
+    const headers = { Authorization: `Bearer ${f.token}` },
+      web = f.store.create({ content: "网页原稿" });
+    assert.equal(
+      (await f.call("/notepad", "POST", { id: web.id, content: "overwrite", version: 1 }, headers))
+        .status,
+      409,
+    );
+    const id = randomUUID();
+    await f.call("/notepad", "POST", { id, content: "便签原稿" }, headers);
+    f.store.update(id, { deleted: true, version: 1 });
+    assert.equal(
+      (await f.call("/notepad", "POST", { id, content: "便签原稿", version: 1 }, headers)).status,
+      409,
+    );
+    assert.equal(
+      (await f.call("/notepad", "POST", { id: randomUUID(), content: "new" })).status,
+      401,
+    );
+    assert.equal((await f.call("/notepad", "GET", undefined, headers)).status, 405);
+  } finally {
+    f.db.close();
+  }
+});

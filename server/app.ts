@@ -2,16 +2,25 @@ import type { DatabaseSync } from "node:sqlite";
 import { HttpError, json, readJson } from "../src/shared/server/http.ts";
 import { rippleStore } from "../src/modules/ripple/server/store.ts";
 import { rippleApi } from "../src/modules/ripple/server/handler.ts";
+import { createNotepad } from "./notepad.ts";
 import { createAuth } from "./auth.ts";
 export function createApp(db: DatabaseSync, password: string, secure = false) {
   const store = rippleStore(db),
     api = rippleApi(store),
     auth = createAuth(db, password, secure);
+  const notepad = createNotepad(db, store);
   return async (request: Request, client = "local") => {
     try {
       const url = new URL(request.url);
       const response = await auth.route(request, client);
       if (response) return response;
+      if (url.pathname === "/api/notepad") {
+        if (!auth.capture(request))
+          throw new HttpError(401, "速记令牌无效，请在网页设置中重新生成");
+        if (request.method !== "POST") throw new HttpError(405, "只支持保存记事本");
+        auth.sameOrigin(request);
+        return json(notepad(await readJson(request, 512 * 1024)));
+      }
       if (url.pathname === "/api/capture") {
         if (!auth.capture(request))
           throw new HttpError(401, "速记令牌无效，请在网页设置中重新生成");

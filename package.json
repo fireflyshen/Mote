@@ -11,7 +11,7 @@
     "dev": "node server/index.ts",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
-    "build": "tsc --noEmit && vite build && esbuild server/index.ts scripts/import-memos.ts scripts/capture.ts --bundle --platform=node --target=node24 --format=esm --packages=external --outbase=. --outdir=output",
+    "build": "tsc --noEmit && vite build && esbuild server/index.ts scripts/import-memos.ts scripts/capture.ts scripts/notepad.ts --bundle --platform=node --target=node24 --format=esm --packages=external --outbase=. --outdir=output",
     "start": "NODE_ENV=production node output/server/index.js",
     "test": "node --test tests/*.test.ts",
     "import:memos": "node scripts/import-memos.ts",

@@ -3,7 +3,7 @@
 从 Tessera 的便签模块独立出来的个人记录应用。打开就写，按 `⌘↵` 保存；标签、搜索、编辑、回收站、草稿和 JSON 导入导出均保留，不包含热力图。
 
 - 网页和 Raycast/Tinycast 读取、写入同一个 RN SQLite 数据库。
-- 网页用访问密码登录；插件使用只允许新增记录的专用令牌，失败可重试且不会重复记录。
+- 网页用访问密码登录；悬浮记事本使用专用令牌，只能新增记录及修改它自己创建的记录，支持离线草稿和版本冲突保护。
 - 服务与 Tessera 完全分离，不连接或修改 Tessera 数据；可以通过网页导入既有 Ripple 备份，保留 ID、日期、历史版本，冲突整批回滚。
 
 ## 当前入口
@@ -16,7 +16,7 @@ npm run server:connect
 
 保持此终端运行，浏览器打开 [http://127.0.0.1:5174](http://127.0.0.1:5174)。密码在本机 `output/login.md`（不入 Git）。关闭连接不影响服务器保存的记录。域名尚未启用。
 
-Tinycast 搜索 `Send to Mote`。默认通过 `ssh rn` 发送到 RN，无需网页隧道持续运行。插件代码、安装和设置见 [raycast-extension/README.md](raycast-extension/README.md)。
+Tinycast 搜索 `Mote Notes`，直接弹出独立的原生悬浮记事本。停笔 1.2 秒后自动保存同步，`⌘S` 立即保存，`⌘N` 新建，右上角时钟可切换本机最近记录。关闭窗口后内容保留，继续输入更新同一条 Mote 记录。默认通过 `ssh rn` 同步到 RN，无需网页隧道持续运行。插件代码、安装和设置见 [raycast-extension/README.md](raycast-extension/README.md)。
 
 ## 本地开发
 

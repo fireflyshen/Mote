@@ -1,23 +1,30 @@
-# Mote for Raycast / Tinycast
+# Mote Notes for Raycast / Tinycast
 
-flomo 风格的单页输入：`MEMO` + `Tags`，`⌘↵` 发送。发送成功关闭窗口；失败保留草稿，再次发送复用记录 ID，防止重复保存。
+搜索 `Mote Notes`，弹出独立的 macOS 原生悬浮记事本，可放在其他应用上方并自由缩放。
+
+- 直接写正文；标签写成 `#想法`、`#阅读/书摘`。
+- 输入立即保存到本机，停笔 1.2 秒后自动同步到 Mote。
+- `⌘S` 立即保存并同步，`⌘N` 新建记录；右上角时钟切换本机最近记录。
+- 关闭窗口不会清空内容，再次打开继续写同一条记录。
+- 断网保留本机内容并每 15 秒重试；网页上的更新会触发冲突提示，不覆盖远端。
+
+## 构建和安装
+
+需要 macOS 13+、Node.js 24+ 和 Xcode Command Line Tools。
 
 ```sh
 npm ci
-npm run build
 npm run typecheck
 npm run lint
 npm test
+npm run build
+bash ../native-notes/install.sh
 ```
 
-Raycast：运行 `npm run dev`。Tinycast：设置 → Extensions → Import Local Extension，选择构建后的 `dist/`。
+构建生成根目录 `output/Mote Notes.app` 和扩展 `dist/`。安装脚本将原生记事本放在 `~/Library/Application Support/Mote/Mote Notes.app`，再把扩展放入 Tinycast，保留插件设置。Raycast 用户可运行 `npm run dev` 加载扩展。
 
-设置：
-- Connection：当前选择 `SSH (RN)`；复用 `~/.ssh/config` 的 `rn`，不需要浏览器登录或开放服务器端口。
-- Capture Token：在 Mote 网页「设置与 Raycast」生成；只允许新增记录。
-- Default Tags：可留空，例如 `#碎记`，也可在每次输入时修改。
-- 配好 HTTPS 域名后可改选 `HTTPS`，Server URL 填 Mote 首页地址。
+插件沿用已有 SSH / HTTPS 配置与速记令牌，首次启动时传给记事本。令牌和配置仅写入本机 0600 文件，不进入命令行参数。令牌只能新增记录及更新此记事本创建的记录；不能读取或修改其他网页记录。
 
-仅供本机私有安装。`lint` 检查 ESLint 和 Prettier；`lint:store` 另要求有效的 Raycast 商店作者账号，发布商店前需修改作者资料。
+本机记事本在 `~/Library/Application Support/Mote/notebook.json`，保留全文、同步版本和当前记录，权限为 0600。请保留这个文件。
 
-交互参考：[Send to flomo](https://www.raycast.com/ahonn/send-to-flomo)、[flomo 官方说明](https://help.flomoapp.com/advance/extension/raycast-to-flomo.html)。本插件独立实现。
+交互参考：[Raycast Notes](https://manual.raycast.com/notes)。悬浮窗使用独立的原生 AppKit/SwiftUI 程序，插件只负责唤出它。
