@@ -1,0 +1,11 @@
+node_modules/
+dist/
+output/
+data/
+.env*
+!.env.example
+.DS_Store
+raycast-extension/raycast-env.d.ts
+raycast-extension/.raycast/
+.playwright-cli/
+.playwright/

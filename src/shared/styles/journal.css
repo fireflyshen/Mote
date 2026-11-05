@@ -1,0 +1,77 @@
+@layer components {
+  .quiet-button {
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    background: transparent;
+    padding: 9px 14px;
+    font-size: 12px;
+    cursor: pointer;
+  }
+  .text-button {
+    border: 0;
+    padding: 6px 0;
+    background: transparent;
+    font-size: 12px;
+    color: var(--text-soft);
+    cursor: pointer;
+  }
+  .text-button:hover:not(:disabled) {
+    color: var(--accent-deep);
+  }
+  .journal-drawer button:disabled {
+    opacity: 0.45;
+    cursor: default;
+  }
+  .journal-drawer .page-heading .eyebrow {
+    display: block;
+    margin-bottom: 9px;
+    color: var(--text-faint);
+    font-size: 11px;
+    font-variant-numeric: tabular-nums;
+  }
+  .journal-date input {
+    padding: 0;
+    border: 0;
+    color: var(--text-faint);
+    background: transparent;
+    font: inherit;
+    font-size: 11px;
+    cursor: pointer;
+  }
+  .journal-section-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 13px;
+    color: var(--text-soft);
+    font-size: 12px;
+    font-weight: 550;
+  }
+  .journal-section-heading span:last-child:not(:first-child) {
+    color: var(--text-faint);
+    font-size: 11px;
+    font-weight: 400;
+    font-variant-numeric: tabular-nums;
+  }
+  .journal-empty {
+    margin: 0;
+    padding: 24px 0;
+    color: var(--text-faint);
+    font-size: 12px;
+  }
+  .journal-save-hint {
+    margin: 30px 0 0;
+    color: var(--text-faint);
+    font-size: 11px;
+  }
+  @media (max-width: 760px) {
+    .journal-date input {
+      font-size: 13px;
+    }
+    .quiet-button,
+    .text-button {
+      min-height: 40px;
+    }
+  }
+}
