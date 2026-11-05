@@ -1,0 +1,35 @@
+{
+  "name": "mote-floating-notes",
+  "productName": "Mote Notes",
+  "version": "0.4.0",
+  "private": true,
+  "type": "module",
+  "main": "build/main.cjs",
+  "description": "Floating notepad window bundled with the Mote Raycast extension.",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "test": "node --test tests/*.test.ts",
+    "package:mac": "npm run build && node scripts/package.mjs darwin arm64",
+    "package:win": "npm run build && node scripts/package.mjs win32 x64"
+  },
+  "devDependencies": {
+    "@electron/asar": "latest",
+    "@electron/get": "latest",
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^24.13.3",
+    "archiver": "latest",
+    "electron": "latest",
+    "esbuild": "^0.28.1",
+    "eslint": "^10.8.0",
+    "extract-zip": "latest",
+    "globals": "^17.7.0",
+    "prettier": "^3.9.10",
+    "typescript": "~6.0.2",
+    "typescript-eslint": "^8.65.0"
+  }
+}

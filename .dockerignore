@@ -4,3 +4,4 @@ data
 .env*
 raycast-extension
 tests
+floating-notes

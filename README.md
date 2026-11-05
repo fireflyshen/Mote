@@ -16,7 +16,23 @@ npm run server:connect
 
 保持此终端运行，浏览器打开 [http://127.0.0.1:5174](http://127.0.0.1:5174)。密码在本机 `output/login.md`（不入 Git）。关闭连接不影响服务器保存的记录。域名尚未启用。
 
-Windows / macOS 悬浮记事本已独立到同级 [MoteNotes](../MoteNotes/README.md)，支持自动保存、SSH 同步与可选的 Raycast/Tinycast 启动入口。客户端不参与本服务的构建或部署。
+## Raycast 记事本
+
+项目包含部署在 RN 的网页、Raycast 插件和插件自带的独立悬浮窗口。使用顺序：在 Raycast 搜索 `Mote Notes` → 弹出记事本 → 写下内容 → 自动保存同步到 Mote 网页。`⌘ / Ctrl + S` 立即保存，`⌘ / Ctrl + N` 新建；关闭后下次从 Raycast 继续。
+
+连接方式、`rn` SSH 主机和速记令牌都在插件设置中配置。令牌由 Mote 网页「设置与 Raycast」生成。记事本是插件配套窗口，无需单独安装桌面客户端。
+
+```sh
+npm run setup:plugin             # 安装插件及窗口的构建依赖
+npm run test:plugin
+npm run build:plugin             # 当前平台插件，包含记事本窗口
+npm run build:plugin:windows     # Windows x64 插件包
+```
+
+Raycast 使用 `Import Extension` 导入 `raycast-extension/`；Tinycast 可在设置中将构建后的 `raycast-extension/dist/` 作为扩展文件夹导入。Windows 与 macOS 都从插件启动配套窗口。平台包位于 `output/Mote-raycast-<platform>-<arch>.zip`，Windows 真机导入尚未验证。
+
+`floating-notes/` 是窗口的内部实现，`raycast-extension/` 是入口与连接配置；网页/服务端继续由项目根目录构建和部署。草稿、记录 ID 和版本会从旧窗口迁移到插件的私有数据目录，原文件与备份保留。
+
 
 ## 本地开发
 

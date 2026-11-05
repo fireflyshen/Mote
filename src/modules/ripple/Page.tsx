@@ -344,7 +344,7 @@ export default function MotePage() {
             <button
               onClick={() => window.dispatchEvent(new Event("mote-settings"))}
             >
-              设置与客户端
+              设置与 Raycast
             </button>
           </div>
         </aside>

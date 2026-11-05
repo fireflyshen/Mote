@@ -9,3 +9,7 @@ raycast-extension/raycast-env.d.ts
 raycast-extension/.raycast/
 .playwright-cli/
 .playwright/
+
+raycast-extension/assets/floating-notes/
+raycast-extension/raycast-env.d.ts
+floating-notes/build/

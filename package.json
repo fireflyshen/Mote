@@ -16,7 +16,11 @@
     "test": "node --test tests/*.test.ts",
     "import:memos": "node scripts/import-memos.ts",
     "server:connect": "ssh -N -o ExitOnForwardFailure=yes -o ServerAliveInterval=30 -L 127.0.0.1:5174:127.0.0.1:4174 rn",
-    "deploy": "bash scripts/deploy.sh"
+    "deploy": "bash scripts/deploy.sh",
+    "setup:plugin": "npm --prefix floating-notes ci && npm --prefix raycast-extension ci",
+    "build:plugin": "npm --prefix raycast-extension run build",
+    "build:plugin:windows": "npm --prefix raycast-extension run build:windows",
+    "test:plugin": "npm --prefix floating-notes run typecheck && npm --prefix floating-notes run lint && npm --prefix floating-notes test && npm --prefix raycast-extension run typecheck && npm --prefix raycast-extension run lint && npm --prefix raycast-extension test"
   },
   "dependencies": {
     "react": "^19.2.8",

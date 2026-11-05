@@ -5,5 +5,7 @@
 - Never overwrite Tessera data. Mote owns its own SQLite database and tables.
 - Keep credentials, personal notes, databases, screenshots and build output out of Git.
 - Before deploying, run the server/web app typecheck, lint, build and relevant tests.
-- Desktop clients and optional launchers are maintained independently in ../MoteNotes.
+- Mote is one product: deployed web service, Raycast extension and the floating notepad window bundled with that extension.
+- Keep extension connection settings in Raycast. Do not turn the window into a separately installed desktop client.
+- Validate floating-notes and raycast-extension with their own checks when changing the plugin.
 - Preserve stable submission IDs, failed drafts, version checks and scoped capture tokens.

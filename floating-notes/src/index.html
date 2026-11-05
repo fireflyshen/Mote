@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'"
+    />
+    <title>Mote Notes</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <strong>mote</strong>
+      <div class="tools">
+        <select id="recent" aria-label="最近记录"></select
+        ><button id="new" aria-label="新记录" title="新记录">＋</button
+        ><button id="save" aria-label="保存并同步" title="保存并同步">✓</button>
+      </div>
+    </header>
+    <main>
+      <textarea
+        id="editor"
+        aria-label="记事本正文"
+        placeholder="现在的想法是…"
+        spellcheck="false"
+        maxlength="50000"
+      ></textarea>
+    </main>
+    <footer id="status-bar">
+      <span class="dot"></span><span id="status" role="status">正在打开…</span
+      ><button id="duplicate" hidden>另存为新记录</button><kbd id="shortcut"></kbd>
+    </footer>
+    <script src="renderer.js"></script>
+  </body>
+</html>
