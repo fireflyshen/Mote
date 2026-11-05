@@ -16,7 +16,7 @@ npm run server:connect
 
 保持此终端运行，浏览器打开 [http://127.0.0.1:5174](http://127.0.0.1:5174)。密码在本机 `output/login.md`（不入 Git）。关闭连接不影响服务器保存的记录。域名尚未启用。
 
-Tinycast 搜索 `Mote Notes`，直接弹出独立的原生悬浮记事本。停笔 1.2 秒后自动保存同步，`⌘S` 立即保存，`⌘N` 新建，右上角时钟可切换本机最近记录。关闭窗口后内容保留，继续输入更新同一条 Mote 记录。默认通过 `ssh rn` 同步到 RN，无需网页隧道持续运行。插件代码、安装和设置见 [raycast-extension/README.md](raycast-extension/README.md)。
+Windows / macOS 悬浮记事本已独立到同级 [MoteNotes](../MoteNotes/README.md)，支持自动保存、SSH 同步与可选的 Raycast/Tinycast 启动入口。客户端不参与本服务的构建或部署。
 
 ## 本地开发
 

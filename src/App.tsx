@@ -123,7 +123,7 @@ export default function App() {
             }}
           >
             <header>
-              <h2 id="settings-title">设置与 Raycast</h2>
+              <h2 id="settings-title">设置与客户端</h2>
               <button
                 autoFocus
                 aria-label="关闭设置"
@@ -147,7 +147,7 @@ export default function App() {
               />
             </label>
             <hr />
-            <h3>Raycast 快捷记录</h3>
+            <h3>Mote Notes 记事本</h3>
             <p>
               打开 Mote Notes，在悬浮记事本中写下想法，停笔后自动同步，⌘S 立即保存。当前连接选择 SSH
               (RN)，SSH Host 填 rn。
@@ -157,13 +157,13 @@ export default function App() {
               <input readOnly value={location.origin} />
             </label>
             <p>
-              生成速记令牌后粘贴到插件设置。令牌仅显示一次，可新增记录并更新记事本创建的记录。重新生成会使旧令牌失效。
+              生成速记令牌后粘贴到客户端设置。令牌仅显示一次，可新增记录并更新记事本创建的记录。重新生成会使旧令牌失效。
             </p>
             <button
               className="mote-primary"
               disabled={busy}
               onClick={async () => {
-                if (!confirm("生成新令牌会使之前的 Raycast 令牌失效，继续吗？")) return;
+                if (!confirm("生成新令牌会使之前的客户端令牌失效，继续吗？")) return;
                 setBusy(true);
                 setError("");
                 try {

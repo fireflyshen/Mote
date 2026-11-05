@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 cd "$(dirname "$0")/.."
-npm --prefix raycast-extension run typecheck
-npm --prefix raycast-extension run lint
-npm --prefix raycast-extension test
-npm --prefix raycast-extension run build
 npm run typecheck
 npm run lint
 npm test
