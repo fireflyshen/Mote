@@ -33,7 +33,6 @@ Raycast 使用 `Import Extension` 导入 `raycast-extension/`；Tinycast 可在�
 
 `floating-notes/` 是窗口的内部实现，`raycast-extension/` 是入口与连接配置；网页/服务端继续由项目根目录构建和部署。草稿、记录 ID 和版本会从旧窗口迁移到插件的私有数据目录，原文件与备份保留。
 
-
 ## 本地开发
 
 Node.js 24.12+：

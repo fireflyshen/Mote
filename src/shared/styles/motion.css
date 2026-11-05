@@ -1,148 +1,148 @@
 @layer base {
-  :root {
-    --ease-apple: cubic-bezier(0.2, 0.8, 0.2, 1);
-    --ease-spring: cubic-bezier(0.2, 0.8, 0.2, 1);
-    --motion-fast: 150ms;
-    --motion-enter: 160ms;
-    --motion-drawer-open: 240ms;
-    --motion-drawer-close: 200ms;
-  }
+    :root {
+        --ease-apple: cubic-bezier(0.2, 0.8, 0.2, 1);
+        --ease-spring: cubic-bezier(0.2, 0.8, 0.2, 1);
+        --motion-fast: 150ms;
+        --motion-enter: 160ms;
+        --motion-drawer-open: 240ms;
+        --motion-drawer-close: 200ms;
+    }
 }
 @layer components {
-  .view-transition {
-    min-width: 0;
-    animation: tessera-view-enter var(--motion-enter) var(--ease-apple) both;
-  }
-  .view-transition[data-pending] {
-    animation: none;
-  }
-  @keyframes tessera-view-enter {
-    from {
-      opacity: 0;
+    .view-transition {
+        min-width: 0;
+        animation: tessera-view-enter var(--motion-enter) var(--ease-apple) both;
     }
-    to {
-      opacity: 1;
+    .view-transition[data-pending] {
+        animation: none;
     }
-  }
-  .pixel-loader {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 14px;
-    color: var(--text-faint);
-    font-size: 12px;
-    letter-spacing: 0.01em;
-  }
-  .heatmap-frame > .pixel-loader {
-    width: 100%;
-    min-height: 142px;
-  }
-  .pixel-loader-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 12px);
-    gap: 4px;
-  }
-  .pixel-loader-grid i {
-    width: 12px;
-    height: 12px;
-    border-radius: 3px;
-    background: var(--heat-empty, var(--surface-muted));
-    animation: tessera-pixel-pulse 1.5s ease-in-out infinite;
-  }
-  .pixel-loader[data-inline] {
-    flex-direction: row;
-    gap: 8px;
-    font-size: 10px;
-  }
-  .pixel-loader[data-inline] .pixel-loader-grid {
-    grid-template-columns: repeat(2, 6px);
-    gap: 2px;
-  }
-  .pixel-loader[data-inline] .pixel-loader-grid i {
-    width: 6px;
-    height: 6px;
-    border-radius: 1.5px;
-  }
-  @keyframes tessera-pixel-pulse {
-    0%,
-    100% {
-      background: var(--heat-empty, var(--surface-muted));
-      transform: scale(1);
+    @keyframes tessera-view-enter {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
     }
-    25% {
-      background: var(--heat-2, var(--accent-soft));
+    .pixel-loader {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        color: var(--text-faint);
+        font-size: 12px;
+        letter-spacing: 0.01em;
     }
-    50% {
-      background: var(--heat-5, var(--accent));
-      transform: scale(1.1);
+    .heatmap-frame > .pixel-loader {
+        width: 100%;
+        min-height: 142px;
     }
-    75% {
-      background: var(--heat-3, var(--accent-soft));
+    .pixel-loader-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 12px);
+        gap: 4px;
     }
-  }
-  .heatmap-frame[data-loading] {
-    opacity: 0.55;
-  }
-  .heatmap-cell {
-    transition: box-shadow var(--motion-fast);
-  }
-  .heatmap-cell:hover:not(:disabled) {
-    box-shadow: 0 0 0 1px var(--accent);
-  }
-  .icon-button,
-  .subtle-icon-button,
-  .year-controls button,
-  .view-controls button,
-  .insight-choices button,
-  .insight-navigation button,
-  .insight-pagination button,
-  .insight-text-button,
-  .tessera-theme,
-  .tessera-header nav a {
-    transition:
-      color var(--motion-fast),
-      background var(--motion-fast);
-  }
-  .drawer-content[data-mobile-section] > section {
-    animation: tessera-view-enter var(--motion-enter) var(--ease-apple) both;
-  }
-  .drawer-loading {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--text-faint);
-    font-size: 12px;
-  }
-  .drawer-save-state .pixel-loader {
-    white-space: normal;
-  }
-  .report-choice {
-    padding: 5px 8px;
-    border: 0;
-    border-radius: 6px;
-    background: var(--surface-muted);
-    color: var(--text);
-    font-size: 11px;
-    cursor: pointer;
-  }
-  .report-choice:hover:not(:disabled) {
-    background: var(--accent-soft);
-  }
+    .pixel-loader-grid i {
+        width: 12px;
+        height: 12px;
+        border-radius: 3px;
+        background: var(--heat-empty, var(--surface-muted));
+        animation: tessera-pixel-pulse 1.5s ease-in-out infinite;
+    }
+    .pixel-loader[data-inline] {
+        flex-direction: row;
+        gap: 8px;
+        font-size: 10px;
+    }
+    .pixel-loader[data-inline] .pixel-loader-grid {
+        grid-template-columns: repeat(2, 6px);
+        gap: 2px;
+    }
+    .pixel-loader[data-inline] .pixel-loader-grid i {
+        width: 6px;
+        height: 6px;
+        border-radius: 1.5px;
+    }
+    @keyframes tessera-pixel-pulse {
+        0%,
+        100% {
+            background: var(--heat-empty, var(--surface-muted));
+            transform: scale(1);
+        }
+        25% {
+            background: var(--heat-2, var(--accent-soft));
+        }
+        50% {
+            background: var(--heat-5, var(--accent));
+            transform: scale(1.1);
+        }
+        75% {
+            background: var(--heat-3, var(--accent-soft));
+        }
+    }
+    .heatmap-frame[data-loading] {
+        opacity: 0.55;
+    }
+    .heatmap-cell {
+        transition: box-shadow var(--motion-fast);
+    }
+    .heatmap-cell:hover:not(:disabled) {
+        box-shadow: 0 0 0 1px var(--accent);
+    }
+    .icon-button,
+    .subtle-icon-button,
+    .year-controls button,
+    .view-controls button,
+    .insight-choices button,
+    .insight-navigation button,
+    .insight-pagination button,
+    .insight-text-button,
+    .tessera-theme,
+    .tessera-header nav a {
+        transition:
+            color var(--motion-fast),
+            background var(--motion-fast);
+    }
+    .drawer-content[data-mobile-section] > section {
+        animation: tessera-view-enter var(--motion-enter) var(--ease-apple) both;
+    }
+    .drawer-loading {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: var(--text-faint);
+        font-size: 12px;
+    }
+    .drawer-save-state .pixel-loader {
+        white-space: normal;
+    }
+    .report-choice {
+        padding: 5px 8px;
+        border: 0;
+        border-radius: 6px;
+        background: var(--surface-muted);
+        color: var(--text);
+        font-size: 11px;
+        cursor: pointer;
+    }
+    .report-choice:hover:not(:disabled) {
+        background: var(--accent-soft);
+    }
 }
 /* A shared policy also covers the app header and future modules. */
 @layer overrides {
-  @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-      animation: none !important;
-      transition: none !important;
-      scroll-behavior: auto !important;
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            animation: none !important;
+            transition: none !important;
+            scroll-behavior: auto !important;
+        }
+        .pixel-loader-grid i {
+            background: var(--heat-3, var(--accent));
+        }
     }
-    .pixel-loader-grid i {
-      background: var(--heat-3, var(--accent));
-    }
-  }
 }

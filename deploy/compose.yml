@@ -1,18 +1,18 @@
 name: mote
 services:
-  mote:
-    image: ${MOTE_IMAGE:-mote:latest}
-    container_name: mote
-    restart: unless-stopped
-    read_only: true
-    mem_limit: 160m
-    pids_limit: 64
-    cap_drop: [ALL]
-    security_opt: [no-new-privileges:true]
-    ports: ["127.0.0.1:4174:4174"]
-    environment:
-      NODE_OPTIONS: --max-old-space-size=96
-      MOTE_PASSWORD: ${MOTE_PASSWORD:?Set MOTE_PASSWORD}
-      # Local browser access is through an encrypted SSH tunnel only.
-      MOTE_COOKIE_SECURE: "false"
-    volumes: ["./data:/data"]
+    mote:
+        image: ${MOTE_IMAGE:-mote:latest}
+        container_name: mote
+        restart: unless-stopped
+        read_only: true
+        mem_limit: 160m
+        pids_limit: 64
+        cap_drop: [ALL]
+        security_opt: [no-new-privileges:true]
+        ports: ["127.0.0.1:4174:4174"]
+        environment:
+            NODE_OPTIONS: --max-old-space-size=96
+            MOTE_PASSWORD: ${MOTE_PASSWORD:?Set MOTE_PASSWORD}
+            # Local browser access is through an encrypted SSH tunnel only.
+            MOTE_COOKIE_SECURE: "false"
+        volumes: ["./data:/data"]
